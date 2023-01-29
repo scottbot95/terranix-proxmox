@@ -64,11 +64,26 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1674945187,
-        "narHash": "sha256-8ATi1sBikwygA5Ey5vgGoW5BmLkywlD80+dOXzszi0c=",
+        "lastModified": 1674976244,
+        "narHash": "sha256-pBLEOl/ldt3mfw8MHm7OwFEIsykAAFD3fi3KkFPSezg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "08911d56f32eb1fd2c184d415cde0e9ed9dd36e2",
+        "rev": "4ed11a5c79db2e0629b8837d23a2c99bfa521a03",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1636823747,
+        "narHash": "sha256-oWo1nElRAOZqEf90Yek2ixdHyjD+gqtS/pAgwaQ9UhQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f6a2ed2082d9a51668c86ba27d0b5496f7a2ea93",
         "type": "github"
       },
       "original": {
@@ -89,9 +104,7 @@
         "bats-assert": "bats-assert",
         "bats-support": "bats-support",
         "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "terranix-examples": "terranix-examples"
       },
       "locked": {

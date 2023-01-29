@@ -1,4 +1,394 @@
 # proxmox options
 
 <ul>
+<li>
+  <b><u>proxmox.enable</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Whether to enable proxmox provider
+See https://registry.terraform.io/providers/Telmate/proxmox for documentation
+.<br>
+</li>
+<li>
+  <b><u>proxmox.provider.endpoint</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;https://pve.example.com:8006/api2/json&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Proxmox API endpoint
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.log_level</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Log level to use for proxmox provider or null to disable logging.
+
+Logs will be written to terraform-plugin-proxmox.log. This may be 
+overriden with provider.proxmox.pm_log_file
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.password</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Proxmox password for API user authentication.
+May be also be provied through PM_PASSWORD environment variable
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.token_id</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;myuser@pve!terraform&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Proxmox token id for API token authentication.
+May be also be provied through PM_AP_TOKEN_ID environment variable
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.token_secret</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;00000000-0000-0000-0000-000000000000&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Proxmox token secret for API token authentication.
+May be also be provied through PM_AP_TOKEN_SECRET environment variable
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.user</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;myuser@pve&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Proxmox user for API user authentication.
+May be also be provied through PM_USER environment variable
+<br>
+</li>
+<li>
+  <b><u>proxmox.provider.version</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;2.9.11&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
+  <b>description</b>: Version of the telmate/proxmox provider to use<br>
+</li>
+<li>
+  <b><u>proxmox.qemu</u></b><br>
+  <b>type</b>: attribute set of submodules<br>
+  <b>default</b>: {}<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Qemu VMs deployed to PVE<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.agent</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Wether to enable the QEMU Guest Agent.
+Note: you must run the qemu-guest-agent daemon in the guest for this to have any effect.
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.ballon</u></b><br>
+  <b>type</b>: null or unsigned integer, meaning &gt;=0<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The minimum amount of memory to allocate to the VM in MB.
+See https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_memory for documentation.
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.bios</u></b><br>
+  <b>type</b>: one of &#34;seabios&#34;, &#34;ovmf&#34;<br>
+  <b>default</b>: &#34;ovmf&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: BIOS mode to use<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.boot</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;cdn&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The boot order for the VM. Ordered string of characters denoting boot order.
+Options: floppy (a), hard disk (c), CD-ROM (d), or network (n).
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.clone</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The base VM from which to clone to create the new VM.
+Note: clone is mutually exclussive with pxe and iso
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.cores</u></b><br>
+  <b>type</b>: positive integer, meaning &gt;0<br>
+  <b>default</b>: 1<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The number of CPU cores per socket to allocate to the VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.description</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;Terraform managed VM&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The description of the VM. Shows as the &#39;Notes&#39; field in the Proxmox GUI.
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk</u></b><br>
+  <b>type</b>: list of submodules<br>
+  <b>default</b>: []<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Disks to attach to this VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk.*.discard</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Controls whether to pass discard/trim requests to the underlying storage<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk.*.sdd</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable SSD emulation on disk<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk.*.size</u></b><br>
+  <b>type</b>: string matching the pattern [0-9]+[GMK]<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The size of the created disk<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk.*.storage</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;local-lvm&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: he name of the storage pool on which to store the disk<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.disk.*.type</u></b><br>
+  <b>type</b>: one of &#34;ide&#34;, &#34;sata&#34;, &#34;scsi&#34;, &#34;virtio&#34;<br>
+  <b>default</b>: &#34;virtio&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The type of disk device to add<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.enable</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable deploying this VM.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.full_clone</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: true<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Wether to perform a full clone.
+See https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_copy_and_clone for documentation
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.iso</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;local:iso/debian.iso&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The name of the ISO image to mount to the VM.
+Only applies when clone is not set.
+Note: iso is mutually exclussive with clone and pxe
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.memory</u></b><br>
+  <b>type</b>: positive integer, meaning &gt;0<br>
+  <b>default</b>: 512<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The amount of memory to alloate to the VM in MB<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.name</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;${name}&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Name of the VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network</u></b><br>
+  <b>type</b>: list of submodules<br>
+  <b>default</b>: []<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Network devices to attach to this VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network.*.bridge</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;nat&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Bridge to which the network device should be attached<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network.*.firewall</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable the Proxmox firewall on this network device.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network.*.macaddr</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Override the randomly generated MAC Address for the VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network.*.model</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;virtio&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Network Card Model.
+The virtio model provides the best performance with very low CPU overhead.
+If your guest does not support this driver, it is usually best to use e1000.
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.network.*.tag</u></b><br>
+  <b>type</b>: null or positive integer, meaning &gt;0<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The VLAN tag to apply to packets on this device<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.numa</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable Non-Uniform Memory Access
+See https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation
+.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.onboot</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable the VM startup after the PVE node starts.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.os_type</u></b><br>
+  <b>type</b>: null or one of &#34;ubuntu&#34;, &#34;centos&#34;, &#34;cloud-init&#34;<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Which provisioning method to use, based on the OS type.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.pool</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The resource pool to which the VM will be added<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.pxe</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable PXE boot of the VM. Requires network be set first in boot
+Note: pxe is mutually exclussive with clone and iso
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.sockets</u></b><br>
+  <b>type</b>: positive integer, meaning &gt;0<br>
+  <b>default</b>: 1<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The number of CPU sockets to allocate to the VM<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.sshkeys</u></b><br>
+  <b>type</b>: null or strings concatenated with &#34;\n&#34;<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: SSH public keys to add to authorized keys file for cloud-init user<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.startup</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The Proxmox startup/shutdown behaviour<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.tags</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Tags of the VM. This is only meta information.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.target_node</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The name of the Proxmox Node on which to place the VM
+<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.vmid</u></b><br>
+  <b>type</b>: null or integer between 100 and 2147483647 (both inclusive)<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: VMID to use for creation or `null` to auto-assign the next available ID
+<br>
+</li>
 </ul>

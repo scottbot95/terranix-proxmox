@@ -5,7 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     terranix.url = "github:terranix/terranix/develop";
-    terranix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, terranix, flake-utils }: 

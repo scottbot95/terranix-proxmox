@@ -1,4 +1,7 @@
-{config, lib, ...}:
+{...}:
 {
-  
+  imports = [
+    ./module/provider.nix
+    ./module/qemu.nix
+  ];
 }

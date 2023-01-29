@@ -1,1 +1,851 @@
-{}
+{
+  "proxmox.enable": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable proxmox provider\nSee https://registry.terraform.io/providers/Telmate/proxmox for documentation\n.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "enable"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.provider.endpoint": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "description": "Proxmox API endpoint\n",
+    "example": "https://pve.example.com:8006/api2/json",
+    "loc": [
+      "proxmox",
+      "provider",
+      "endpoint"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.provider.log_level": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": null,
+    "description": "Log level to use for proxmox provider or null to disable logging.\n\nLogs will be written to terraform-plugin-proxmox.log. This may be \noverriden with provider.proxmox.pm_log_file\n",
+    "loc": [
+      "proxmox",
+      "provider",
+      "log_level"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.provider.password": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": null,
+    "description": "Proxmox password for API user authentication.\nMay be also be provied through PM_PASSWORD environment variable\n",
+    "loc": [
+      "proxmox",
+      "provider",
+      "password"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.provider.token_id": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": null,
+    "description": "Proxmox token id for API token authentication.\nMay be also be provied through PM_AP_TOKEN_ID environment variable\n",
+    "example": "myuser@pve!terraform",
+    "loc": [
+      "proxmox",
+      "provider",
+      "token_id"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.provider.token_secret": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": null,
+    "description": "Proxmox token secret for API token authentication.\nMay be also be provied through PM_AP_TOKEN_SECRET environment variable\n",
+    "example": "00000000-0000-0000-0000-000000000000",
+    "loc": [
+      "proxmox",
+      "provider",
+      "token_secret"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.provider.user": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": null,
+    "description": "Proxmox user for API user authentication.\nMay be also be provied through PM_USER environment variable\n",
+    "example": "myuser@pve",
+    "loc": [
+      "proxmox",
+      "provider",
+      "user"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.provider.version": {
+    "declarations": [
+      {
+        "channelPath": "/module/provider.nix",
+        "path": "module/provider.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
+      }
+    ],
+    "default": "2.9.11",
+    "description": "Version of the telmate/proxmox provider to use",
+    "loc": [
+      "proxmox",
+      "provider",
+      "version"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": {},
+    "description": "Qemu VMs deployed to PVE",
+    "loc": [
+      "proxmox",
+      "qemu"
+    ],
+    "readOnly": false,
+    "type": "attribute set of submodules"
+  },
+  "proxmox.qemu.<name>.agent": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "Wether to enable the QEMU Guest Agent.\nNote: you must run the qemu-guest-agent daemon in the guest for this to have any effect.\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "agent"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.ballon": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The minimum amount of memory to allocate to the VM in MB.\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_memory for documentation.\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "ballon"
+    ],
+    "readOnly": false,
+    "type": "null or unsigned integer, meaning >=0"
+  },
+  "proxmox.qemu.<name>.bios": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "ovmf",
+    "description": "BIOS mode to use",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "bios"
+    ],
+    "readOnly": false,
+    "type": "one of \"seabios\", \"ovmf\""
+  },
+  "proxmox.qemu.<name>.boot": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "cdn",
+    "description": "The boot order for the VM. Ordered string of characters denoting boot order.\nOptions: floppy (a), hard disk (c), CD-ROM (d), or network (n).\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "boot"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.clone": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The base VM from which to clone to create the new VM.\nNote: clone is mutually exclussive with pxe and iso\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "clone"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.cores": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": 1,
+    "description": "The number of CPU cores per socket to allocate to the VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "cores"
+    ],
+    "readOnly": false,
+    "type": "positive integer, meaning >0"
+  },
+  "proxmox.qemu.<name>.description": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "Terraform managed VM",
+    "description": "The description of the VM. Shows as the 'Notes' field in the Proxmox GUI.\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "description"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.disk": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": [],
+    "description": "Disks to attach to this VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk"
+    ],
+    "readOnly": false,
+    "type": "list of submodules"
+  },
+  "proxmox.qemu.<name>.disk.*.discard": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "Controls whether to pass discard/trim requests to the underlying storage",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk",
+      "*",
+      "discard"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.disk.*.sdd": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "Whether to enable SSD emulation on disk",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk",
+      "*",
+      "sdd"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.disk.*.size": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "The size of the created disk",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk",
+      "*",
+      "size"
+    ],
+    "readOnly": false,
+    "type": "string matching the pattern [0-9]+[GMK]"
+  },
+  "proxmox.qemu.<name>.disk.*.storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "he name of the storage pool on which to store the disk",
+    "example": "local-lvm",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk",
+      "*",
+      "storage"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.disk.*.type": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "virtio",
+    "description": "The type of disk device to add",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "disk",
+      "*",
+      "type"
+    ],
+    "readOnly": false,
+    "type": "one of \"ide\", \"sata\", \"scsi\", \"virtio\""
+  },
+  "proxmox.qemu.<name>.enable": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable deploying this VM.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "enable"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.full_clone": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": true,
+    "description": "Wether to perform a full clone.\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_copy_and_clone for documentation\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "full_clone"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.iso": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The name of the ISO image to mount to the VM.\nOnly applies when clone is not set.\nNote: iso is mutually exclussive with clone and pxe\n",
+    "example": "local:iso/debian.iso",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "iso"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.memory": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": 512,
+    "description": "The amount of memory to alloate to the VM in MB",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "memory"
+    ],
+    "readOnly": false,
+    "type": "positive integer, meaning >0"
+  },
+  "proxmox.qemu.<name>.name": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "${name}",
+    "description": "Name of the VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "name"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.network": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": [],
+    "description": "Network devices to attach to this VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network"
+    ],
+    "readOnly": false,
+    "type": "list of submodules"
+  },
+  "proxmox.qemu.<name>.network.*.bridge": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "nat",
+    "description": "Bridge to which the network device should be attached",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network",
+      "*",
+      "bridge"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.network.*.firewall": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable the Proxmox firewall on this network device.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network",
+      "*",
+      "firewall"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.network.*.macaddr": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "Override the randomly generated MAC Address for the VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network",
+      "*",
+      "macaddr"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.network.*.model": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "virtio",
+    "description": "Network Card Model.\nThe virtio model provides the best performance with very low CPU overhead.\nIf your guest does not support this driver, it is usually best to use e1000.\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network",
+      "*",
+      "model"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.network.*.tag": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The VLAN tag to apply to packets on this device",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "network",
+      "*",
+      "tag"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.qemu.<name>.numa": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable Non-Uniform Memory Access\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation\n.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "numa"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.onboot": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable the VM startup after the PVE node starts.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "onboot"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.os_type": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "Which provisioning method to use, based on the OS type.",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "os_type"
+    ],
+    "readOnly": false,
+    "type": "null or one of \"ubuntu\", \"centos\", \"cloud-init\""
+  },
+  "proxmox.qemu.<name>.pool": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The resource pool to which the VM will be added",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "pool"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.pxe": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable PXE boot of the VM. Requires network be set first in boot\nNote: pxe is mutually exclussive with clone and iso\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "pxe"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.qemu.<name>.sockets": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": 1,
+    "description": "The number of CPU sockets to allocate to the VM",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "sockets"
+    ],
+    "readOnly": false,
+    "type": "positive integer, meaning >0"
+  },
+  "proxmox.qemu.<name>.sshkeys": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "SSH public keys to add to authorized keys file for cloud-init user",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "sshkeys"
+    ],
+    "readOnly": false,
+    "type": "null or strings concatenated with \"\\n\""
+  },
+  "proxmox.qemu.<name>.startup": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "The Proxmox startup/shutdown behaviour",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "startup"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.tags": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "Tags of the VM. This is only meta information.",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "tags"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.qemu.<name>.target_node": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "The name of the Proxmox Node on which to place the VM\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "target_node"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.qemu.<name>.vmid": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "VMID to use for creation or `null` to auto-assign the next available ID\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "vmid"
+    ],
+    "readOnly": false,
+    "type": "null or integer between 100 and 2147483647 (both inclusive)"
+  }
+}
