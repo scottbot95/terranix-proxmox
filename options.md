@@ -90,8 +90,8 @@ May be also be provied through PM_USER environment variable
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.agent</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: null<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: true<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Wether to enable the QEMU Guest Agent.
@@ -118,8 +118,8 @@ See https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_memory for documentation
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.boot</u></b><br>
-  <b>type</b>: string<br>
-  <b>default</b>: &#34;cdn&#34;<br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: The boot order for the VM. Ordered string of characters denoting boot order.
@@ -155,24 +155,24 @@ Note: clone is mutually exclussive with pxe and iso
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk</u></b><br>
-  <b>type</b>: list of submodules<br>
-  <b>default</b>: []<br>
+  <b>type</b>: null or list of submodules<br>
+  <b>default</b>: null<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Disks to attach to this VM<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk.*.discard</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: null<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: false<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Controls whether to pass discard/trim requests to the underlying storage<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk.*.sdd</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: null<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: false<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Whether to enable SSD emulation on disk<br>
@@ -208,6 +208,16 @@ Note: clone is mutually exclussive with pxe and iso
   <b>example</b>: true<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Whether to enable deploying this VM.<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.flake</u></b><br>
+  <b>type</b>: null or string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes
+Use null to skip attempting to deploy NixOS configuration changes.
+<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.full_clone</u></b><br>
@@ -299,21 +309,21 @@ If your guest does not support this driver, it is usually best to use e1000.
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.numa</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Whether to enable Non-Uniform Memory Access
 See https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation
-.<br>
+<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.onboot</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
-  <b>description</b>: Whether to enable the VM startup after the PVE node starts.<br>
+  <b>description</b>: Whether to enable the VM startup after the PVE node starts<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.os_type</u></b><br>
@@ -333,12 +343,12 @@ See https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.pxe</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: Whether to enable PXE boot of the VM. Requires network be set first in boot
-Note: pxe is mutually exclussive with clone and iso
+          Note: pxe is mutually exclussive with clone and iso
 <br>
 </li>
 <li>

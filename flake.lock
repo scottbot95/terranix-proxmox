@@ -96,7 +96,24 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
+        "terraform-nixos": "terraform-nixos",
         "terranix": "terranix"
+      }
+    },
+    "terraform-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1631652215,
+        "narHash": "sha256-8qnG9y3LIy2md3tf2r6p/mgRzEI005r/tEYanP6NjEg=",
+        "owner": "numtide",
+        "repo": "terraform-deploy-nixos-flakes",
+        "rev": "b4093274bb1f0ae833c2e02298f5f032691601ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "terraform-deploy-nixos-flakes",
+        "type": "github"
       }
     },
     "terranix": {

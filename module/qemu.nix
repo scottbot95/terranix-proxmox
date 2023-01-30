@@ -1,10 +1,16 @@
-{ config, lib, ...}:
+{ config, lib, terraform-nixos, ...}:
 with lib; 
 let
   cfg = config.proxmox.qemu;
-  mkProxBoolOption = { description, default ? false, ... }@args: mkOption ({
-    type = types.bool;
+  mkNullEnableOption = desc: mkOption {
+    type = with types; nullOr bool;
+    default = null;
+    description = "Whether to enable ${desc}";
+  };
+  mkProxBoolOption = { description, ... }@args: mkOption ({
+    type = with types; nullOr bool;
     apply = b: if b then 1 else 0;
+    default = false;
   } // args);
   networkOptions = {...}: {
     options = {
@@ -95,21 +101,22 @@ let
         default = "ovmf";
         description = "BIOS mode to use";
       };
-      onboot = mkEnableOption "the VM startup after the PVE node starts";
+      onboot = mkNullEnableOption "the VM startup after the PVE node starts";
       startup = mkOption {
         type = with types; nullOr str;
         default = null;
         description = "The Proxmox startup/shutdown behaviour";
       };
       boot = mkOption {
-        type = types.str;
-        default = "cdn";
+        type = with types; nullOr str;
+        default = null;
         description = ''
           The boot order for the VM. Ordered string of characters denoting boot order.
           Options: floppy (a), hard disk (c), CD-ROM (d), or network (n).
         '';
       };
       agent = mkProxBoolOption {
+        default = true;
         description = ''
           Wether to enable the QEMU Guest Agent.
           Note: you must run the qemu-guest-agent daemon in the guest for this to have any effect.
@@ -125,14 +132,9 @@ let
         '';
         example = "local:iso/debian.iso";
       };
-      pxe = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable PXE boot of the VM. Requires network be set first in boot
+      pxe = mkNullEnableOption ''PXE boot of the VM. Requires network be set first in boot
           Note: pxe is mutually exclussive with clone and iso
         '';
-      };
       clone = mkOption {
         type = with types; nullOr str;
         default = null;
@@ -172,7 +174,7 @@ let
         default = 1;
         description = "The number of CPU cores per socket to allocate to the VM";
       };
-      numa = mkEnableOption ''
+      numa = mkNullEnableOption ''
         Non-Uniform Memory Access
         See https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation
       '';
@@ -204,9 +206,18 @@ let
       };
 
       disk = mkOption {
-        type = with types; listOf (submodule diskOptions);
-        default = [];
+        type = with types; nullOr (listOf (submodule diskOptions));
+        default = null;
         description = "Disks to attach to this VM";
+      };
+
+      flake = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        description = ''
+          Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes
+          Use null to skip attempting to deploy NixOS configuration changes.
+        '';
       };
     };
   };
@@ -218,12 +229,57 @@ in
     type = with types; attrsOf (submodule qemuOptions);
   };
 
-  config = mkIf (cfg != {}) {
-    proxmox.enable = true;
-    resource.proxmox_vm_qemu = mapAttrs'
-      (_: qemu_config: {
-        name = "${qemu_config.name}";
-        value = mkIf qemu_config.enable (builtins.removeAttrs qemu_config ["enable"]);
+  config =
+    let
+      forEachQemu = func: mapAttrs' (_: func) cfg;
+    in
+    mkIf (cfg != {}) { 
+      proxmox.enable = true; 
+
+      resource.time_sleep.cloud_init_delay = {
+        # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
+        # TODO can/should we just increase the timeout used by deploy_nixos step?
+        create_duration = mkDefault "90s";
+        triggers = forEachQemu (vm_config: {
+          name = vm_config.name;
+          value = "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
+        });
+      };
+
+      resource.tls_private_key = forEachQemu (vm_config: {
+        name = "${vm_config.name}_ssh_key";
+        value = mkIf vm_config.enable {
+          algorithm = "RSA";
+          rsa_bits = 4096;
+        };
       });
-  };
+
+      resource.proxmox_vm_qemu = forEachQemu (vm_config:
+        let
+          qemu_config = (builtins.removeAttrs vm_config [
+            "enable"
+            "flake"
+          ]) // {
+            sshkeys = "\${tls_private_key.${vm_config.name}_ssh_key.public_key_openssh}";
+          };
+        in {
+          name = vm_config.name;
+          value = mkIf vm_config.enable qemu_config;
+        });
+
+      module = forEachQemu (vm_config: {
+        name = "${vm_config.name}_deploy_nixos";
+        value = mkIf (vm_config.enable && vm_config.flake != null) {
+          source = terraform-nixos;
+          flake = vm_config.flake;
+          flake_host = vm_config.name;
+          # Access through timer to allow for cloud-init to provision ssh
+          # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
+          target_host = "\${time_sleep.cloud_init_delay.triggers[\"${vm_config.name}\"]}";
+          target_user = "root";
+          ssh_private_key = "\${tls_private_key.${vm_config.name}_ssh_key.private_key_openssh}";
+          ssh_agent = false;
+        };
+      });
+    };
 }

@@ -5,9 +5,12 @@
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     terranix.url = "github:terranix/terranix/develop";
+    
+    terraform-nixos.url = "github:numtide/terraform-deploy-nixos-flakes";
+    terraform-nixos.flake = false;
   };
 
-  outputs = { self, nixpkgs, terranix, flake-utils }: 
+  outputs = { self, nixpkgs, terranix, terraform-nixos, flake-utils }: 
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -16,7 +19,10 @@
             inherit system;
             moduleRootPath = toString ./.;
             urlPrefix = "https://github.com/scottbot95/terranix-proxmox/tree/main/module";
-            modules = [{ imports = [ ./default.nix ]; }];
+            modules = [
+              ./default.nix
+              { _module.args = { inherit terraform-nixos; }; }
+            ];
           };
         in
         {
@@ -63,6 +69,9 @@
           defaultApp = self.apps.${system}.options;
         }) // {
       terranixModules.proxmox = import ./default.nix;
-      terranixModule.imports = [ self.terranixModules.proxmox ];
+      terranixModule.imports = [ 
+        self.terranixModules.proxmox
+        { _module.args = { inherit terraform-nixos; }; }
+      ];
     };
 }

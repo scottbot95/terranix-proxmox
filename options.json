@@ -171,6 +171,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
+    "default": true,
     "description": "Wether to enable the QEMU Guest Agent.\nNote: you must run the qemu-guest-agent daemon in the guest for this to have any effect.\n",
     "loc": [
       "proxmox",
@@ -179,7 +180,7 @@
       "agent"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.ballon": {
     "declarations": [
@@ -227,7 +228,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": "cdn",
+    "default": null,
     "description": "The boot order for the VM. Ordered string of characters denoting boot order.\nOptions: floppy (a), hard disk (c), CD-ROM (d), or network (n).\n",
     "loc": [
       "proxmox",
@@ -236,7 +237,7 @@
       "boot"
     ],
     "readOnly": false,
-    "type": "string"
+    "type": "null or string"
   },
   "proxmox.qemu.<name>.clone": {
     "declarations": [
@@ -303,7 +304,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": [],
+    "default": null,
     "description": "Disks to attach to this VM",
     "loc": [
       "proxmox",
@@ -312,7 +313,7 @@
       "disk"
     ],
     "readOnly": false,
-    "type": "list of submodules"
+    "type": "null or list of submodules"
   },
   "proxmox.qemu.<name>.disk.*.discard": {
     "declarations": [
@@ -322,6 +323,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
+    "default": false,
     "description": "Controls whether to pass discard/trim requests to the underlying storage",
     "loc": [
       "proxmox",
@@ -332,7 +334,7 @@
       "discard"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.disk.*.sdd": {
     "declarations": [
@@ -342,6 +344,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
+    "default": false,
     "description": "Whether to enable SSD emulation on disk",
     "loc": [
       "proxmox",
@@ -352,7 +355,7 @@
       "sdd"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.disk.*.size": {
     "declarations": [
@@ -435,6 +438,25 @@
     ],
     "readOnly": false,
     "type": "boolean"
+  },
+  "proxmox.qemu.<name>.flake": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": null,
+    "description": "Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes\nUse null to skip attempting to deploy NixOS configuration changes.\n",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "flake"
+    ],
+    "readOnly": false,
+    "type": "null or string"
   },
   "proxmox.qemu.<name>.full_clone": {
     "declarations": [
@@ -646,9 +668,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable Non-Uniform Memory Access\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation\n.",
-    "example": true,
+    "default": null,
+    "description": "Whether to enable Non-Uniform Memory Access\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation\n",
     "loc": [
       "proxmox",
       "qemu",
@@ -656,7 +677,7 @@
       "numa"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.onboot": {
     "declarations": [
@@ -666,9 +687,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable the VM startup after the PVE node starts.",
-    "example": true,
+    "default": null,
+    "description": "Whether to enable the VM startup after the PVE node starts",
     "loc": [
       "proxmox",
       "qemu",
@@ -676,7 +696,7 @@
       "onboot"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.os_type": {
     "declarations": [
@@ -724,8 +744,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable PXE boot of the VM. Requires network be set first in boot\nNote: pxe is mutually exclussive with clone and iso\n",
+    "default": null,
+    "description": "Whether to enable PXE boot of the VM. Requires network be set first in boot\n          Note: pxe is mutually exclussive with clone and iso\n",
     "loc": [
       "proxmox",
       "qemu",
@@ -733,7 +753,7 @@
       "pxe"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.qemu.<name>.sockets": {
     "declarations": [
