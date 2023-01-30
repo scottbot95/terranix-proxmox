@@ -89,7 +89,7 @@ let
           VMID to use for creation or `null` to auto-assign the next available ID
         '';
       };
-      description = mkOption {
+      desc = mkOption {
         type = types.str;
         default = "Terraform managed VM";
         description = ''
