@@ -145,7 +145,7 @@ Note: clone is mutually exclussive with pxe and iso
   <b>description</b>: The number of CPU cores per socket to allocate to the VM<br>
 </li>
 <li>
-  <b><u>proxmox.qemu.&lt;name&gt;.description</u></b><br>
+  <b><u>proxmox.qemu.&lt;name&gt;.desc</u></b><br>
   <b>type</b>: string<br>
   <b>default</b>: &#34;Terraform managed VM&#34;<br>
   <b>example</b>: null<br>
@@ -400,5 +400,15 @@ See https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: VMID to use for creation or `null` to auto-assign the next available ID
 <br>
+</li>
+<li>
+  <b><u>proxmox.show_deploy_ouptut</u></b><br>
+  <b>type</b>: boolean<br>
+  <b>default</b>: false<br>
+  <b>example</b>: true<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Whether to enable showing output from nixos_deploy
+      May include sensitive information
+.<br>
 </li>
 </ul>

@@ -277,7 +277,7 @@
     "readOnly": false,
     "type": "positive integer, meaning >0"
   },
-  "proxmox.qemu.<name>.description": {
+  "proxmox.qemu.<name>.desc": {
     "declarations": [
       {
         "channelPath": "/module/qemu.nix",
@@ -291,7 +291,7 @@
       "proxmox",
       "qemu",
       "<name>",
-      "description"
+      "desc"
     ],
     "readOnly": false,
     "type": "string"
@@ -867,5 +867,23 @@
     ],
     "readOnly": false,
     "type": "null or integer between 100 and 2147483647 (both inclusive)"
+  },
+  "proxmox.show_deploy_ouptut": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable showing output from nixos_deploy\n      May include sensitive information\n.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "show_deploy_ouptut"
+    ],
+    "readOnly": false,
+    "type": "boolean"
   }
 }

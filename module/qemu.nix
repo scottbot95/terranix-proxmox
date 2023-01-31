@@ -223,10 +223,15 @@ let
   };
 in 
 {
-  options.proxmox.qemu = mkOption {
-    default = {};
-    description = "Qemu VMs deployed to PVE";
-    type = with types; attrsOf (submodule qemuOptions);
+  options.proxmox = {
+    show_deploy_ouptut = mkEnableOption ''showing output from nixos_deploy
+      May include sensitive information
+    '';
+    qemu = mkOption {
+      default = {};
+      description = "Qemu VMs deployed to PVE";
+      type = with types; attrsOf (submodule qemuOptions);
+    };
   };
 
   config =
@@ -277,7 +282,13 @@ in
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
           target_host = "\${time_sleep.cloud_init_delay.triggers[\"${vm_config.name}\"]}";
           target_user = "root";
-          ssh_private_key = "\${tls_private_key.${vm_config.name}_ssh_key.private_key_openssh}";
+          ssh_private_key =
+            let
+              priv_key = "tls_private_key.${vm_config.name}_ssh_key.private_key_openssh";
+            in if config.proxmox.show_deploy_ouptut then
+            "\${nonsensitive(${priv_key})}"
+            else
+              "\${${priv_key}}";
           ssh_agent = false;
         };
       });
