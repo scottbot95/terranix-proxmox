@@ -61,7 +61,10 @@ let
       ssd = mkProxBoolOption {
         description = "Whether to enable SSD emulation on disk";
       };
-      discard = mkProxBoolOption {
+      discard = mkOption {
+        type = with types; nullOr bool;
+        default = false;
+        apply = b: if b == null then null else if b then "on" else "ignore";
         description = "Controls whether to pass discard/trim requests to the underlying storage";
       };
 
