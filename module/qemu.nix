@@ -58,7 +58,7 @@ let
         type = types.strMatching "[0-9]+[GMK]";
         description = "The size of the created disk";
       };
-      sdd = mkProxBoolOption {
+      ssd = mkProxBoolOption {
         description = "Whether to enable SSD emulation on disk";
       };
       discard = mkProxBoolOption {
