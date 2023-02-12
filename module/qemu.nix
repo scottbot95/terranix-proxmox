@@ -250,7 +250,7 @@ in
         create_duration = mkDefault "90s";
         triggers = forEachQemu (vm_config: {
           name = vm_config.name;
-          value = "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
+          value = mkIf vm_config.enable "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
         });
       };
 
