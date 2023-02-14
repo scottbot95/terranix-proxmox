@@ -282,15 +282,17 @@ in
     mkIf (cfg != {}) { 
       proxmox.enable = true; 
 
-      resource.time_sleep.cloud_init_delay = {
-        # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
-        # TODO can/should we just increase the timeout used by deploy_nixos step?
-        create_duration = mkDefault "90s";
-        triggers = forEachQemu (vm_config: {
-          name = vm_config.name;
-          value = mkIf vm_config.enable "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
-        });
-      };
+      resource.time_sleep = forEachQemu (vm_config:  {
+        name = "${vm_config.name}_cloud_init_delay";
+        value = mkIf vm_config.enable {
+          # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
+          # TODO can/should we just increase the timeout used by deploy_nixos step?
+          create_duration = mkDefault "90s";
+          triggers =  {
+            "${vm_config.name}" = "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
+          };
+        };
+      });
 
       resource.tls_private_key = forEachQemu (vm_config: {
         name = "${vm_config.name}_ssh_key";
