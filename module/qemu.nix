@@ -323,7 +323,7 @@ in
           flake_host = vm_config.name;
           # Access through timer to allow for cloud-init to provision ssh
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
-          target_host = "\${time_sleep.cloud_init_delay.triggers[\"${vm_config.name}\"]}";
+          target_host = "\${time_sleep.${vm_config.name}_cloud_init_delay.triggers[\"${vm_config.name}\"]}";
           target_user = "root";
           ssh_private_key =
             let
