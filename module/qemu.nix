@@ -40,7 +40,7 @@ let
   diskOptions = {...}: {
     options = {
       type = mkOption {
-        type = types.enum ["ide" "sata" "scsi" "virtio"];
+        type = types.enum ["efidisk" "ide" "sata" "scsi" "virtio"];
         default = "virtio";
         description = "The type of disk device to add";
       };
@@ -54,13 +54,19 @@ let
         description = "The size of the created disk";
       };
       ssd = mkProxBoolOption {
-        description = "Whether to enable SSD emulation on disk";
+        description = ''
+          Whether to enable SSD emulation on disk
+          Not supported for `efidisk`
+        '';
       };
       discard = mkOption {
         type = with types; nullOr bool;
         default = false;
         apply = b: if b == null then null else if b then "on" else "ignore";
-        description = "Controls whether to pass discard/trim requests to the underlying storage";
+        description = ''
+          Controls whether to pass discard/trim requests to the underlying storage
+          Not supported for `efidisk`
+        '';
       };
 
     };
