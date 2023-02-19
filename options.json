@@ -1,4 +1,655 @@
 {
+  "proxmox.defaults.lxc": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "description": "Default values inheritible by all LXC containers.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc"
+    ],
+    "readOnly": false,
+    "type": "submodule"
+  },
+  "proxmox.defaults.lxc.arch": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Sets the container OS architecture type.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "arch"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.clone": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "VMID of LXC to clone\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "clone"
+    ],
+    "readOnly": false,
+    "type": "null or integer between 100 and 2147483647 (both inclusive)"
+  },
+  "proxmox.defaults.lxc.clone_storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Target storage for full clone.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "clone_storage"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.cores": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The number of cores assigned to the container.\nA container can use all available cores by default.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "cores"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.defaults.lxc.cpulimit": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A number to limit CPU usage by.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "cpulimit"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.defaults.lxc.cpuunits": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A number of the CPU weight that the container possesses.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "cpuunits"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.defaults.lxc.domain": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Domain to use when deploying \n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "domain"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.features": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": {},
+    "description": "An object for allowing the container to access advanced features.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features"
+    ],
+    "readOnly": false,
+    "type": "submodule"
+  },
+  "proxmox.defaults.lxc.features.fuse": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A boolean for enabling FUSE mounts.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features",
+      "fuse"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.features.keyctl": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A boolean for enabling the `keyctl()` system call.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features",
+      "keyctl"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.features.mount": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Defines the filesystem types (separated by semicolons) that are allowed to be mounted.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features",
+      "mount"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.features.nesting": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": true,
+    "description": "A boolean to allow nested virtualization.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features",
+      "nesting"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.defaults.lxc.flake": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes\nUse null to skip attempting to deploy NixOS configuration changes.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "flake"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.force": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A boolean that allows the overwriting of pre-existing containers.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "force"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.full": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "When cloning, create a full copy of all disks.\nThis is always done when you clone a normal CT.\nFor CT template it creates a linked clone by default.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "full"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.hookscript": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A string containing a volume identifier to a script that\nwill be executed during various steps throughout the container's lifetime.\nThe script must be an executable file.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "hookscript"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.memory": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A number containing the amount of RAM to assign to the container (in MB).\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "memory"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.defaults.lxc.nameserver": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The DNS server IP address used by the container. \nIf neither nameserver nor searchdomain are specified, \nthe values of the Proxmox host will be used by default.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "nameserver"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.onboot": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Whether to start the container on boot.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "onboot"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.ostemplate": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The volume identifier that points to the OS template or backup file.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "ostemplate"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.password": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Sets the root password inside the container.\nDoesn't seem to work with NixOS containers.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "password"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.pool": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The name of the Proxmox resource pool to add this container to.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "pool"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.protection": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A boolean that enables the protection flag on this container. \nStops the container and its disk from being removed/updated. \nDefault is false.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "protection"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.rootfs.size": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Size of the underlying volume.\nMust end in G, M, or K (e.g. \"1G\", \"1024M\" , \"1048576K\").\nCannot be changed after initial creation.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "rootfs",
+      "size"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.rootfs.storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A string containing the volume , directory, or device to be\nmounted into the container (at the path specified by mp).\nE.g. local-lvm, local-zfs, local etc.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "rootfs",
+      "storage"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.ssh_public_keys": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The name of the Proxmox resource pool to add this container to.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "ssh_public_keys"
+    ],
+    "readOnly": false,
+    "type": "null or strings concatenated with \"\\n\""
+  },
+  "proxmox.defaults.lxc.start": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A boolean that determines if the container is started after creation.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "start"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.startup": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The startup and shutdown behaviour of the container.\n",
+    "example": "order=1,up=5",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "startup"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.swap": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "A number that sets the amount of swap memory available to the container.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "swap"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.defaults.lxc.tags": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Tags of the container. This is only meta information.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "tags"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.target_node": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The name of the Proxmox Node on which to place the VM\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "target_node"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.defaults.lxc.unique": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Whether a unique random ethernet address is assigned to the container.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "unique"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.defaults.lxc.unprivileged": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": true,
+    "description": "A boolean that makes the container run as an unprivileged user.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "unprivileged"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
   "proxmox.defaults.qemu": {
     "declarations": [
       {
@@ -396,6 +1047,1093 @@
     "readOnly": false,
     "type": "boolean"
   },
+  "proxmox.lxc": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": {},
+    "description": "LXC containers deploy to PVE",
+    "loc": [
+      "proxmox",
+      "lxc"
+    ],
+    "readOnly": false,
+    "type": "attribute set of submodules"
+  },
+  "proxmox.lxc.<name>.arch": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.arch",
+    "description": "Sets the container OS architecture type.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "arch"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.clone": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.clone",
+    "description": "VMID of LXC to clone\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "clone"
+    ],
+    "readOnly": false,
+    "type": "null or integer between 100 and 2147483647 (both inclusive)"
+  },
+  "proxmox.lxc.<name>.clone_storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.clone_storage",
+    "description": "Target storage for full clone.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "clone_storage"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.cores": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.cores",
+    "description": "The number of cores assigned to the container.\nA container can use all available cores by default.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "cores"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.cpulimit": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.cpulimit",
+    "description": "A number to limit CPU usage by.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "cpulimit"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.cpuunits": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.cpuunits",
+    "description": "A number of the CPU weight that the container possesses.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "cpuunits"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.domain": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.domain",
+    "description": "Domain to use when deploying \n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "domain"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.enable": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable deploying this container.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "enable"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.features": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": {},
+    "description": "An object for allowing the container to access advanced features.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features"
+    ],
+    "readOnly": false,
+    "type": "submodule"
+  },
+  "proxmox.lxc.<name>.features.fuse": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.features.fuse",
+    "description": "A boolean for enabling FUSE mounts.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features",
+      "fuse"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.features.keyctl": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.features.keyctl",
+    "description": "A boolean for enabling the `keyctl()` system call.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features",
+      "keyctl"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.features.mount": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.features.mount",
+    "description": "Defines the filesystem types (separated by semicolons) that are allowed to be mounted.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features",
+      "mount"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.features.nesting": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.features.nesting",
+    "description": "A boolean to allow nested virtualization.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features",
+      "nesting"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.flake": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.flake",
+    "description": "Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes\nUse null to skip attempting to deploy NixOS configuration changes.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "flake"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.force": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.force",
+    "description": "A boolean that allows the overwriting of pre-existing containers.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "force"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.full": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.full",
+    "description": "When cloning, create a full copy of all disks.\nThis is always done when you clone a normal CT.\nFor CT template it creates a linked clone by default.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "full"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.hookscript": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.hookscript",
+    "description": "A string containing a volume identifier to a script that\nwill be executed during various steps throughout the container's lifetime.\nThe script must be an executable file.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "hookscript"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.hostname": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "${name}",
+    "description": "Specifies the host name of the container.",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "hostname"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.memory": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.memory",
+    "description": "A number containing the amount of RAM to assign to the container (in MB).\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "memory"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.mountpoint": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": {},
+    "description": "An attribute set describing the mount points present in this container\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint"
+    ],
+    "readOnly": false,
+    "type": "attribute set of submodules"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.acl": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable ACL support.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "acl"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.backup": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable including this mount point in backups.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "backup"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.mp": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "${name}",
+    "description": "The path to the mount point as seen from inside the container. \nThe path must not contain symlinks for security reasons.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "mp"
+    ],
+    "readOnly": false,
+    "type": "path"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.quota": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable user quotas inside the container for this mount point.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "quota"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.replicate": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable including this volume in a storage replica job.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "replicate"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.shared": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable marking this volume as available to all nodes.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "shared"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.size": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "description": "Size of the underlying volume.\nMust end in G, M, or K (e.g. \"1G\", \"1024M\" , \"1048576K\").\nCannot be changed after initial creation.\n",
+    "example": "20G",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "size"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.mountpoint.<name>.storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "description": "A string containing the volume , directory, or device to be mounted\ninto the container (at the path specified by mp).\n",
+    "example": "local-lvm",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "mountpoint",
+      "<name>",
+      "storage"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.name": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "${name}",
+    "description": "Name to use when creating terraform resources",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "name"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.nameserver": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.nameserver",
+    "description": "The DNS server IP address used by the container. \nIf neither nameserver nor searchdomain are specified, \nthe values of the Proxmox host will be used by default.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "nameserver"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.network": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": {},
+    "description": "An attribute set describing the network adapters present in this container\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network"
+    ],
+    "readOnly": false,
+    "type": "attribute set of submodules"
+  },
+  "proxmox.lxc.<name>.network.<name>.bridge": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "description": "Bridge to which the network device should be attached",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "bridge"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.network.<name>.firewall": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": false,
+    "description": "Whether to enable the Proxmox firewall on this network device.",
+    "example": true,
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "firewall"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.network.<name>.hwaddr": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Override the randomly generated MAC Address for the container",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "hwaddr"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.network.<name>.ip": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The IPv4 address of the network interface. \nCan be a static IPv4 address (in CIDR notation), \"dhcp\", or \"manual\".\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "ip"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.network.<name>.ip6": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The IPv6 address of the network interface. \nCan be a static IPv6 address (in CIDR notation), \"auto\", \"dhcp\", or \"manual\".\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "ip6"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.network.<name>.name": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "${name}",
+    "description": "The name of the network interface as seen from inside the container.\n",
+    "example": "eth0",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "name"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.network.<name>.tag": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "The VLAN tag to apply to packets on this device",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "network",
+      "<name>",
+      "tag"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.onboot": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.onboot",
+    "description": "Whether to start the container on boot.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "onboot"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.ostemplate": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.ostemplate",
+    "description": "The volume identifier that points to the OS template or backup file.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "ostemplate"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.password": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.password",
+    "description": "Sets the root password inside the container.\nDoesn't seem to work with NixOS containers.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "password"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.pool": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.pool",
+    "description": "The name of the Proxmox resource pool to add this container to.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "pool"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.protection": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.protection",
+    "description": "A boolean that enables the protection flag on this container. \nStops the container and its disk from being removed/updated. \nDefault is false.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "protection"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.rootfs.size": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.rootfs.size",
+    "description": "Size of the underlying volume.\nMust end in G, M, or K (e.g. \"1G\", \"1024M\" , \"1048576K\").\nCannot be changed after initial creation.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "rootfs",
+      "size"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.rootfs.storage": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.rootfs.storage",
+    "description": "A string containing the volume , directory, or device to be\nmounted into the container (at the path specified by mp).\nE.g. local-lvm, local-zfs, local etc.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "rootfs",
+      "storage"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.ssh_public_keys": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.ssh_public_keys",
+    "description": "The name of the Proxmox resource pool to add this container to.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "ssh_public_keys"
+    ],
+    "readOnly": false,
+    "type": "null or strings concatenated with \"\\n\""
+  },
+  "proxmox.lxc.<name>.start": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.start",
+    "description": "A boolean that determines if the container is started after creation.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "start"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.startup": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.startup",
+    "description": "The startup and shutdown behaviour of the container.\n",
+    "example": "order=1,up=5",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "startup"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.swap": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.swap",
+    "description": "A number that sets the amount of swap memory available to the container.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "swap"
+    ],
+    "readOnly": false,
+    "type": "null or positive integer, meaning >0"
+  },
+  "proxmox.lxc.<name>.tags": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.tags",
+    "description": "Tags of the container. This is only meta information.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "tags"
+    ],
+    "readOnly": false,
+    "type": "null or string"
+  },
+  "proxmox.lxc.<name>.target_node": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.target_node",
+    "description": "The name of the Proxmox Node on which to place the VM\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "target_node"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
+  "proxmox.lxc.<name>.unique": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.unique",
+    "description": "Whether a unique random ethernet address is assigned to the container.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "unique"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
+  "proxmox.lxc.<name>.unprivileged": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.unprivileged",
+    "description": "A boolean that makes the container run as an unprivileged user.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "unprivileged"
+    ],
+    "readOnly": false,
+    "type": "boolean"
+  },
+  "proxmox.lxc.<name>.vmid": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "VMID to assign this container or `null` for next available ID\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "vmid"
+    ],
+    "readOnly": false,
+    "type": "null or integer between 100 and 2147483647 (both inclusive)"
+  },
   "proxmox.provider.endpoint": {
     "declarations": [
       {
@@ -550,10 +2288,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.agent"
-    },
+    "default": "config.proxmox.defaults.qemu.agent",
     "description": "Wether to enable the QEMU Guest Agent.\nNote: you must run the qemu-guest-agent daemon in the guest for this to have any effect.\n",
     "loc": [
       "proxmox",
@@ -572,10 +2307,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.balloon"
-    },
+    "default": "config.proxmox.defaults.qemu.balloon",
     "description": "The minimum amount of memory to allocate to the VM in MB.\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_memory for documentation.\n",
     "loc": [
       "proxmox",
@@ -594,10 +2326,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.bios"
-    },
+    "default": "config.proxmox.defaults.qemu.bios",
     "description": "BIOS mode to use",
     "loc": [
       "proxmox",
@@ -616,10 +2345,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.boot"
-    },
+    "default": "config.proxmox.defaults.qemu.boot",
     "description": "The boot order for the VM. Ordered string of characters denoting boot order.\nOptions: floppy (a), hard disk (c), CD-ROM (d), or network (n).\n",
     "loc": [
       "proxmox",
@@ -638,10 +2364,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.clone"
-    },
+    "default": "config.proxmox.defaults.qemu.clone",
     "description": "The base VM from which to clone to create the new VM.\nNote: clone is mutually exclussive with pxe and iso\n",
     "loc": [
       "proxmox",
@@ -660,10 +2383,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.cores"
-    },
+    "default": "config.proxmox.defaults.qemu.cores",
     "description": "The number of CPU cores per socket to allocate to the VM",
     "loc": [
       "proxmox",
@@ -844,10 +2564,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.flake"
-    },
+    "default": "config.proxmox.defaults.qemu.flake",
     "description": "Flake to use for deploying NixOS configuration changes via https://github.com/numtide/terraform-deploy-nixos-flakes\nUse null to skip attempting to deploy NixOS configuration changes.\n",
     "loc": [
       "proxmox",
@@ -866,10 +2583,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.full_clone"
-    },
+    "default": "config.proxmox.defaults.qemu.full_clone",
     "description": "Wether to perform a full clone.\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_copy_and_clone for documentation\n",
     "loc": [
       "proxmox",
@@ -888,10 +2602,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.iso"
-    },
+    "default": "config.proxmox.defaults.qemu.iso",
     "description": "The name of the ISO image to mount to the VM.\nOnly applies when clone is not set.\nNote: iso is mutually exclussive with clone and pxe\n",
     "example": "local:iso/debian.iso",
     "loc": [
@@ -911,10 +2622,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.memory"
-    },
+    "default": "config.proxmox.defaults.qemu.memory",
     "description": "The amount of memory to alloate to the VM in MB",
     "loc": [
       "proxmox",
@@ -1077,10 +2785,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.numa"
-    },
+    "default": "config.proxmox.defaults.qemu.numa",
     "description": "Non-Uniform Memory Access\nSee https://pve.proxmox.com/pve-docs/chapter-qm.html#_numa for documentation\n",
     "loc": [
       "proxmox",
@@ -1099,10 +2804,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.onboot"
-    },
+    "default": "config.proxmox.defaults.qemu.onboot",
     "description": "Whether to start this VM on PVE startup\n",
     "loc": [
       "proxmox",
@@ -1121,10 +2823,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.os_type"
-    },
+    "default": "config.proxmox.defaults.qemu.os_type",
     "description": "Which provisioning method to use, based on the OS type.",
     "loc": [
       "proxmox",
@@ -1143,10 +2842,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.pool"
-    },
+    "default": "config.proxmox.defaults.qemu.pool",
     "description": "The resource pool to which the VM will be added",
     "loc": [
       "proxmox",
@@ -1165,10 +2861,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.pxe"
-    },
+    "default": "config.proxmox.defaults.qemu.pxe",
     "description": "PXE boot of the VM. Requires network be set first in boot\nNote: pxe is mutually exclussive with clone and iso\n",
     "loc": [
       "proxmox",
@@ -1187,10 +2880,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.sockets"
-    },
+    "default": "config.proxmox.defaults.qemu.sockets",
     "description": "The number of CPU sockets to allocate to the VM",
     "loc": [
       "proxmox",
@@ -1209,10 +2899,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.sshkeys"
-    },
+    "default": "config.proxmox.defaults.qemu.sshkeys",
     "description": "SSH public keys to add to authorized keys file for cloud-init user",
     "loc": [
       "proxmox",
@@ -1250,10 +2937,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.tags"
-    },
+    "default": "config.proxmox.defaults.qemu.tags",
     "description": "Tags of the VM. This is only meta information.",
     "loc": [
       "proxmox",
@@ -1272,10 +2956,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
       }
     ],
-    "default": {
-      "_type": "literalExpression",
-      "text": "config.proxmox.defaults.qemu.target_node"
-    },
+    "default": "config.proxmox.defaults.qemu.target_node",
     "description": "The name of the Proxmox Node on which to place the VM\n",
     "loc": [
       "proxmox",
@@ -1308,9 +2989,9 @@
   "proxmox.show_deploy_ouptut": {
     "declarations": [
       {
-        "channelPath": "/module/qemu.nix",
-        "path": "module/qemu.nix",
-        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+        "channelPath": "/module",
+        "path": "module",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule"
       }
     ],
     "default": false,

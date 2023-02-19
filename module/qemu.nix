@@ -2,11 +2,6 @@
 with lib; 
 let
   cfg = config.proxmox;
-  mkNullEnableOption = desc: mkOption {
-    type = with types; nullOr bool;
-    default = null;
-    description = "Whether to enable ${desc}";
-  };
   mkProxBoolOption = { description, ... }@args: mkOption ({
     type = with types; nullOr bool;
     apply = b: if b then 1 else 0;
@@ -74,7 +69,7 @@ let
   inheritableModule = isDefaults: { config, ...}: let
     defaultAndText = name: default: {
       default = if isDefaults then default else cfg.defaults.qemu.${name};
-      defaultText = if isDefaults then default else literalExpression "config.proxmox.defaults.qemu.${name}";
+      defaultText = if isDefaults then default else "config.proxmox.defaults.qemu.${name}";
     };
   in {
     options = {
@@ -259,9 +254,6 @@ let
 in 
 {
   options.proxmox = {
-    show_deploy_ouptut = mkEnableOption ''showing output from nixos_deploy
-      May include sensitive information
-    '';
     qemu = mkOption {
       default = {};
       description = "Qemu VMs deployed to PVE";
@@ -279,7 +271,7 @@ in
     let
       forEachQemu = func: mapAttrs' (_: func) cfg.qemu;
     in
-    mkIf (cfg != {}) { 
+    mkIf (cfg.qemu != {}) { 
       proxmox.enable = true; 
 
       resource.time_sleep = forEachQemu (vm_config:  {

@@ -86,8 +86,8 @@ with lib; {
       provider.proxmox = {
         pm_api_url = cfg.provider.endpoint;
 
-        pm_api_user = cfg.provider.user;
-        pm_api_password = cfg.provider.password;
+        pm_user = cfg.provider.user;
+        pm_password = cfg.provider.password;
 
         pm_api_token_id = cfg.provider.token_id;
         pm_api_token_secret = cfg.provider.token_secret;
