@@ -224,6 +224,11 @@ let
         description = "Name of the VM";
         defaultText = "\${name}";
       };
+      domain = mkOption {
+        type = types.str;
+        description = "Domain used for generate FQDN for provisioning";
+        example = "local";
+      };
       vmid = mkOption {
         type = with types; nullOr (ints.between 100 2147483647); # TODO what's the actual upper limit?
         default = null;
@@ -280,14 +285,15 @@ in
     mkIf (cfg.qemu != {}) { 
       proxmox.enable = true; 
 
-      resource.time_sleep = forEachQemu (vm_config:  {
+      resource.time_sleep = forEachQemu (vm_config: {
         name = "${vm_config.name}_cloud_init_delay";
         value = mkIf vm_config.enable {
           # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
           # TODO can/should we just increase the timeout used by deploy_nixos step?
           create_duration = mkDefault "90s";
           triggers =  {
-            "${vm_config.name}" = "\${proxmox_vm_qemu.${vm_config.name}.ssh_host}";
+            # Use a Terraform reference here instead of a Nix module reference to dependency gets established
+            "${vm_config.name}" = "\${proxmox_vm_qemu.${vm_config.name}.name}.${vm_config.domain}";
           };
         };
       });
@@ -305,6 +311,7 @@ in
           qemu_config = (builtins.removeAttrs vm_config [
             "enable"
             "flake"
+            "domain"
           ]) // {
             sshkeys = "\${tls_private_key.${vm_config.name}_ssh_key.public_key_openssh}";
           };
