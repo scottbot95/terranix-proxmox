@@ -280,59 +280,59 @@ in
 
   config =
     let
-      forEachQemu = func: mapAttrs' (_: func) cfg.qemu;
+      forEachQemu = func: mapAttrs' func cfg.qemu;
     in
     mkIf (cfg.qemu != {}) { 
       proxmox.enable = true; 
 
-      resource.time_sleep = forEachQemu (vm_config: {
-        name = "${vm_config.name}_cloud_init_delay";
+      resource.time_sleep = forEachQemu (name: vm_config: {
+        name = "${name}_cloud_init_delay";
         value = mkIf vm_config.enable {
           # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
           # TODO can/should we just increase the timeout used by deploy_nixos step?
           create_duration = mkDefault "90s";
           triggers =  {
             # Use a Terraform reference here instead of a Nix module reference to dependency gets established
-            "${vm_config.name}" = "\${proxmox_vm_qemu.${vm_config.name}.name}.${vm_config.domain}";
+            "${name}" = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
           };
         };
       });
 
-      resource.tls_private_key = forEachQemu (vm_config: {
-        name = "${vm_config.name}_ssh_key";
+      resource.tls_private_key = forEachQemu (name: vm_config: {
+        name = "${name}_ssh_key";
         value = mkIf vm_config.enable {
           algorithm = "RSA";
           rsa_bits = 4096;
         };
       });
 
-      resource.proxmox_vm_qemu = forEachQemu (vm_config:
+      resource.proxmox_vm_qemu = forEachQemu (name: vm_config:
         let
           qemu_config = (builtins.removeAttrs vm_config [
             "enable"
             "flake"
             "domain"
           ]) // {
-            sshkeys = "\${tls_private_key.${vm_config.name}_ssh_key.public_key_openssh}";
+            sshkeys = "\${tls_private_key.${name}_ssh_key.public_key_openssh}";
           };
         in {
-          name = vm_config.name;
+          name = name;
           value = mkIf vm_config.enable qemu_config;
         });
 
-      module = forEachQemu (vm_config: {
-        name = "${vm_config.name}_deploy_nixos";
+      module = forEachQemu (name: vm_config: {
+        name = "${name}_deploy_nixos";
         value = mkIf (vm_config.enable && vm_config.flake != null) {
           source = terraform-nixos;
           flake = vm_config.flake;
-          flake_host = vm_config.name;
+          flake_host = name;
           # Access through timer to allow for cloud-init to provision ssh
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
-          target_host = "\${time_sleep.${vm_config.name}_cloud_init_delay.triggers[\"${vm_config.name}\"]}";
+          target_host = "\${time_sleep.${name}_cloud_init_delay.triggers[\"${name}\"]}";
           target_user = "root";
           ssh_private_key =
             let
-              priv_key = "tls_private_key.${vm_config.name}_ssh_key.private_key_openssh";
+              priv_key = "tls_private_key.${name}_ssh_key.private_key_openssh";
             in if config.proxmox.show_deploy_ouptut then
             "\${nonsensitive(${priv_key})}"
             else
