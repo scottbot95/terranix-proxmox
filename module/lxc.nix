@@ -3,6 +3,11 @@ with lib;
 let
   cfg = config.proxmox;
   vmidType = types.ints.between 100 2147483647; # TODO what's the actual upper limit?
+  mkNullEnableOption = desc: mkOption {
+    type = with types; nullOr bool;
+    default = null;
+    description = "Wether to enable " + desc;
+  };
   inheritableModule = isDefaults: { config, ... }: let
     defaultAndText = name: default: let
       nameParts = splitString "." name;
@@ -34,12 +39,11 @@ let
           Use null to skip attempting to deploy NixOS configuration changes.
         '';
       };
-      domain = mkDefaultOption "domain" null {
+      domain = mkDefaultOption "domain" "localdomain" {
         type = with types; nullOr str;
         description = ''
           Domain to use when deploying 
         '';
-        default = "localdomain";
       };
       arch = mkDefaultOption "arch" null {
         type = with types; nullOr str;
@@ -57,6 +61,15 @@ let
         type = with types; nullOr str;
         description = ''
           Target storage for full clone.
+        '';
+      };
+      cmode = mkDefaultOption "cmode" null {
+        type = with types; nullOr (enum ["tty" "console" "shell"]);
+        description = ''
+          Configures console mode.
+          "tty" tries to open a connection to one of the available tty devices.
+          "console" tries to attach to /dev/console instead.
+          "shell" simply invokes a shell inside the container (no login).
         '';
       };
       cores = mkDefaultOption "cores" null {
@@ -104,9 +117,17 @@ let
               '';
             };
             nesting = mkDefaultOption "features.nesting" true {
-              type = types.bool;
+              type = with types; nullOr bool;
               description = ''
                 A boolean to allow nested virtualization.
+              '';
+            };
+            mknod = mkDefaultOption "features.mknod" null {
+              type = with types; nullOr bool;
+              description = ''
+                Allow unprivileged containers to use mknod() to add certain device nodes.
+                This requires a kernel with seccomp trap to user space support (5.3 or newer).
+                This is experimental.
               '';
             };
           };
@@ -309,11 +330,11 @@ let
         '';
         example = "local-lvm";
       };
-      acl = mkEnableOption "ACL support";
-      backup = mkEnableOption "including this mount point in backups";
-      quota = mkEnableOption "user quotas inside the container for this mount point";
-      replicate = mkEnableOption "including this volume in a storage replica job";
-      shared = mkEnableOption "marking this volume as available to all nodes";
+      acl = mkNullEnableOption "ACL support";
+      backup = mkNullEnableOption "including this mount point in backups";
+      quota = mkNullEnableOption "user quotas inside the container for this mount point";
+      replicate = mkNullEnableOption "including this volume in a storage replica job";
+      shared = mkNullEnableOption "marking this volume as available to all nodes";
     };
   };
   lxcOptions = {name, ...}: {

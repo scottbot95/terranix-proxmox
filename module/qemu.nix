@@ -291,7 +291,7 @@ in
           # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
           # TODO can/should we just increase the timeout used by deploy_nixos step?
           create_duration = mkDefault "90s";
-          triggers =  {
+          triggers = {
             # Use a Terraform reference here instead of a Nix module reference to dependency gets established
             "${name}" = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
           };
