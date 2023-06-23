@@ -1,4 +1,4 @@
-{ config, lib, ...}:
+{ config, lib, ... }:
 let
   cfg = config.proxmox;
 in
@@ -12,7 +12,6 @@ with lib; {
     provider = {
       version = mkOption {
         type = types.str;
-        default = "2.9.11";
         description = "Version of the telmate/proxmox provider to use";
       };
 
@@ -92,7 +91,7 @@ with lib; {
         pm_api_token_id = cfg.provider.token_id;
         pm_api_token_secret = cfg.provider.token_secret;
 
-        
+
       };
     })
     (mkIf (cfg.enable && cfg.provider.log_level != null) {
