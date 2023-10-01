@@ -446,7 +446,7 @@ in {
           ssh_private_key = 
             let
               priv_key = "tls_private_key.${lxcConfig.name}_ssh_key.private_key_openssh";
-            in if config.proxmox.show_deploy_ouptut then
+            in if config.proxmox.show_deploy_output then
               "\${nonsensitive(${priv_key})}"
             else
               "\${${priv_key}}";

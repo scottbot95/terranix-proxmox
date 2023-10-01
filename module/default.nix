@@ -6,7 +6,7 @@
   ];
 
   options.proxmox = {
-    show_deploy_ouptut = lib.mkEnableOption ''showing output from nixos_deploy
+    show_deploy_output = lib.mkEnableOption ''showing output from nixos_deploy
       May include sensitive information
     '';
   };

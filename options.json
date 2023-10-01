@@ -73,6 +73,25 @@
     "readOnly": false,
     "type": "null or string"
   },
+  "proxmox.defaults.lxc.cmode": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Configures console mode.\n\"tty\" tries to open a connection to one of the available tty devices.\n\"console\" tries to attach to /dev/console instead.\n\"shell\" simply invokes a shell inside the container (no login).\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "cmode"
+    ],
+    "readOnly": false,
+    "type": "null or one of \"tty\", \"console\", \"shell\""
+  },
   "proxmox.defaults.lxc.cores": {
     "declarations": [
       {
@@ -138,7 +157,7 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": null,
+    "default": "localdomain",
     "description": "Domain to use when deploying \n",
     "loc": [
       "proxmox",
@@ -208,6 +227,26 @@
     "readOnly": false,
     "type": "null or boolean"
   },
+  "proxmox.defaults.lxc.features.mknod": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": null,
+    "description": "Allow unprivileged containers to use mknod() to add certain device nodes.\nThis requires a kernel with seccomp trap to user space support (5.3 or newer).\nThis is experimental.\n",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "lxc",
+      "features",
+      "mknod"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
   "proxmox.defaults.lxc.features.mount": {
     "declarations": [
       {
@@ -246,7 +285,7 @@
       "nesting"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.defaults.lxc.flake": {
     "declarations": [
@@ -953,6 +992,25 @@
     "readOnly": false,
     "type": "null or boolean"
   },
+  "proxmox.defaults.qemu.scsihw": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "virtio-scsi-pci",
+    "description": "The SCSI controller type to be used",
+    "loc": [
+      "proxmox",
+      "defaults",
+      "qemu",
+      "scsihw"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
   "proxmox.defaults.qemu.sockets": {
     "declarations": [
       {
@@ -1121,6 +1179,25 @@
     "readOnly": false,
     "type": "null or string"
   },
+  "proxmox.lxc.<name>.cmode": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.cmode",
+    "description": "Configures console mode.\n\"tty\" tries to open a connection to one of the available tty devices.\n\"console\" tries to attach to /dev/console instead.\n\"shell\" simply invokes a shell inside the container (no login).\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "cmode"
+    ],
+    "readOnly": false,
+    "type": "null or one of \"tty\", \"console\", \"shell\""
+  },
   "proxmox.lxc.<name>.cores": {
     "declarations": [
       {
@@ -1276,6 +1353,26 @@
     "readOnly": false,
     "type": "null or boolean"
   },
+  "proxmox.lxc.<name>.features.mknod": {
+    "declarations": [
+      {
+        "channelPath": "/module/lxc.nix",
+        "path": "module/lxc.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.lxc.features.mknod",
+    "description": "Allow unprivileged containers to use mknod() to add certain device nodes.\nThis requires a kernel with seccomp trap to user space support (5.3 or newer).\nThis is experimental.\n",
+    "loc": [
+      "proxmox",
+      "lxc",
+      "<name>",
+      "features",
+      "mknod"
+    ],
+    "readOnly": false,
+    "type": "null or boolean"
+  },
   "proxmox.lxc.<name>.features.mount": {
     "declarations": [
       {
@@ -1314,7 +1411,7 @@
       "nesting"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.flake": {
     "declarations": [
@@ -1457,9 +1554,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable ACL support.",
-    "example": true,
+    "default": null,
+    "description": "Wether to enable ACL support",
     "loc": [
       "proxmox",
       "lxc",
@@ -1469,7 +1565,7 @@
       "acl"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.mountpoint.<name>.backup": {
     "declarations": [
@@ -1479,9 +1575,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable including this mount point in backups.",
-    "example": true,
+    "default": null,
+    "description": "Wether to enable including this mount point in backups",
     "loc": [
       "proxmox",
       "lxc",
@@ -1491,7 +1586,7 @@
       "backup"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.mountpoint.<name>.mp": {
     "declarations": [
@@ -1522,9 +1617,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable user quotas inside the container for this mount point.",
-    "example": true,
+    "default": null,
+    "description": "Wether to enable user quotas inside the container for this mount point",
     "loc": [
       "proxmox",
       "lxc",
@@ -1534,7 +1628,7 @@
       "quota"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.mountpoint.<name>.replicate": {
     "declarations": [
@@ -1544,9 +1638,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable including this volume in a storage replica job.",
-    "example": true,
+    "default": null,
+    "description": "Wether to enable including this volume in a storage replica job",
     "loc": [
       "proxmox",
       "lxc",
@@ -1556,7 +1649,7 @@
       "replicate"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.mountpoint.<name>.shared": {
     "declarations": [
@@ -1566,9 +1659,8 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix"
       }
     ],
-    "default": false,
-    "description": "Whether to enable marking this volume as available to all nodes.",
-    "example": true,
+    "default": null,
+    "description": "Wether to enable marking this volume as available to all nodes",
     "loc": [
       "proxmox",
       "lxc",
@@ -1578,7 +1670,7 @@
       "shared"
     ],
     "readOnly": false,
-    "type": "boolean"
+    "type": "null or boolean"
   },
   "proxmox.lxc.<name>.mountpoint.<name>.size": {
     "declarations": [
@@ -2253,7 +2345,6 @@
         "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix"
       }
     ],
-    "default": "2.9.11",
     "description": "Version of the telmate/proxmox provider to use",
     "loc": [
       "proxmox",
@@ -2441,7 +2532,7 @@
       }
     ],
     "default": false,
-    "description": "Controls whether to pass discard/trim requests to the underlying storage",
+    "description": "Controls whether to pass discard/trim requests to the underlying storage\nNot supported for `efidisk`\n",
     "loc": [
       "proxmox",
       "qemu",
@@ -2482,7 +2573,7 @@
       }
     ],
     "default": false,
-    "description": "Whether to enable SSD emulation on disk",
+    "description": "Whether to enable SSD emulation on disk\nNot supported for `efidisk`\n",
     "loc": [
       "proxmox",
       "qemu",
@@ -2534,7 +2625,26 @@
       "type"
     ],
     "readOnly": false,
-    "type": "one of \"ide\", \"sata\", \"scsi\", \"virtio\""
+    "type": "one of \"efidisk\", \"ide\", \"sata\", \"scsi\", \"virtio\""
+  },
+  "proxmox.qemu.<name>.domain": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "description": "Domain used for generate FQDN for provisioning",
+    "example": "local",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "domain"
+    ],
+    "readOnly": false,
+    "type": "string"
   },
   "proxmox.qemu.<name>.enable": {
     "declarations": [
@@ -2872,6 +2982,25 @@
     "readOnly": false,
     "type": "null or boolean"
   },
+  "proxmox.qemu.<name>.scsihw": {
+    "declarations": [
+      {
+        "channelPath": "/module/qemu.nix",
+        "path": "module/qemu.nix",
+        "url": "https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix"
+      }
+    ],
+    "default": "config.proxmox.defaults.qemu.scsihw",
+    "description": "The SCSI controller type to be used",
+    "loc": [
+      "proxmox",
+      "qemu",
+      "<name>",
+      "scsihw"
+    ],
+    "readOnly": false,
+    "type": "string"
+  },
   "proxmox.qemu.<name>.sockets": {
     "declarations": [
       {
@@ -2986,7 +3115,7 @@
     "readOnly": false,
     "type": "null or integer between 100 and 2147483647 (both inclusive)"
   },
-  "proxmox.show_deploy_ouptut": {
+  "proxmox.show_deploy_output": {
     "declarations": [
       {
         "channelPath": "/module",
@@ -2999,7 +3128,7 @@
     "example": true,
     "loc": [
       "proxmox",
-      "show_deploy_ouptut"
+      "show_deploy_output"
     ],
     "readOnly": false,
     "type": "boolean"

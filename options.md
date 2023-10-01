@@ -38,6 +38,18 @@
 <br>
 </li>
 <li>
+  <b><u>proxmox.defaults.lxc.cmode</u></b><br>
+  <b>type</b>: null or one of &#34;tty&#34;, &#34;console&#34;, &#34;shell&#34;<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
+  <b>description</b>: Configures console mode.
+&#34;tty&#34; tries to open a connection to one of the available tty devices.
+&#34;console&#34; tries to attach to /dev/console instead.
+&#34;shell&#34; simply invokes a shell inside the container (no login).
+<br>
+</li>
+<li>
   <b><u>proxmox.defaults.lxc.cores</u></b><br>
   <b>type</b>: null or positive integer, meaning &gt;0<br>
   <b>default</b>: null<br>
@@ -68,7 +80,7 @@ A container can use all available cores by default.
 <li>
   <b><u>proxmox.defaults.lxc.domain</u></b><br>
   <b>type</b>: null or string<br>
-  <b>default</b>: null<br>
+  <b>default</b>: &#34;localdomain&#34;<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
   <b>description</b>: Domain to use when deploying 
@@ -102,6 +114,17 @@ A container can use all available cores by default.
 <br>
 </li>
 <li>
+  <b><u>proxmox.defaults.lxc.features.mknod</u></b><br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
+  <b>description</b>: Allow unprivileged containers to use mknod() to add certain device nodes.
+This requires a kernel with seccomp trap to user space support (5.3 or newer).
+This is experimental.
+<br>
+</li>
+<li>
   <b><u>proxmox.defaults.lxc.features.mount</u></b><br>
   <b>type</b>: null or string<br>
   <b>default</b>: null<br>
@@ -112,7 +135,7 @@ A container can use all available cores by default.
 </li>
 <li>
   <b><u>proxmox.defaults.lxc.features.nesting</u></b><br>
-  <b>type</b>: boolean<br>
+  <b>type</b>: null or boolean<br>
   <b>default</b>: true<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
@@ -472,6 +495,14 @@ Note: pxe is mutually exclussive with clone and iso
 <br>
 </li>
 <li>
+  <b><u>proxmox.defaults.qemu.scsihw</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;virtio-scsi-pci&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The SCSI controller type to be used<br>
+</li>
+<li>
   <b><u>proxmox.defaults.qemu.sockets</u></b><br>
   <b>type</b>: positive integer, meaning &gt;0<br>
   <b>default</b>: 1<br>
@@ -550,6 +581,18 @@ See https://registry.terraform.io/providers/Telmate/proxmox for documentation
 <br>
 </li>
 <li>
+  <b><u>proxmox.lxc.&lt;name&gt;.cmode</u></b><br>
+  <b>type</b>: null or one of &#34;tty&#34;, &#34;console&#34;, &#34;shell&#34;<br>
+  <b>default</b>: &#34;config.proxmox.defaults.lxc.cmode&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
+  <b>description</b>: Configures console mode.
+&#34;tty&#34; tries to open a connection to one of the available tty devices.
+&#34;console&#34; tries to attach to /dev/console instead.
+&#34;shell&#34; simply invokes a shell inside the container (no login).
+<br>
+</li>
+<li>
   <b><u>proxmox.lxc.&lt;name&gt;.cores</u></b><br>
   <b>type</b>: null or positive integer, meaning &gt;0<br>
   <b>default</b>: &#34;config.proxmox.defaults.lxc.cores&#34;<br>
@@ -622,6 +665,17 @@ A container can use all available cores by default.
 <br>
 </li>
 <li>
+  <b><u>proxmox.lxc.&lt;name&gt;.features.mknod</u></b><br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: &#34;config.proxmox.defaults.lxc.features.mknod&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
+  <b>description</b>: Allow unprivileged containers to use mknod() to add certain device nodes.
+This requires a kernel with seccomp trap to user space support (5.3 or newer).
+This is experimental.
+<br>
+</li>
+<li>
   <b><u>proxmox.lxc.&lt;name&gt;.features.mount</u></b><br>
   <b>type</b>: null or string<br>
   <b>default</b>: &#34;config.proxmox.defaults.lxc.features.mount&#34;<br>
@@ -632,7 +686,7 @@ A container can use all available cores by default.
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.features.nesting</u></b><br>
-  <b>type</b>: boolean<br>
+  <b>type</b>: null or boolean<br>
   <b>default</b>: &#34;config.proxmox.defaults.lxc.features.nesting&#34;<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
@@ -708,19 +762,19 @@ The script must be an executable file.
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.acl</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
-  <b>description</b>: Whether to enable ACL support.<br>
+  <b>description</b>: Wether to enable ACL support<br>
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.backup</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
-  <b>description</b>: Whether to enable including this mount point in backups.<br>
+  <b>description</b>: Wether to enable including this mount point in backups<br>
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.mp</u></b><br>
@@ -734,27 +788,27 @@ The path must not contain symlinks for security reasons.
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.quota</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
-  <b>description</b>: Whether to enable user quotas inside the container for this mount point.<br>
+  <b>description</b>: Wether to enable user quotas inside the container for this mount point<br>
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.replicate</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
-  <b>description</b>: Whether to enable including this volume in a storage replica job.<br>
+  <b>description</b>: Wether to enable including this volume in a storage replica job<br>
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.shared</u></b><br>
-  <b>type</b>: boolean<br>
-  <b>default</b>: false<br>
-  <b>example</b>: true<br>
+  <b>type</b>: null or boolean<br>
+  <b>default</b>: null<br>
+  <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/lxc.nix">module/lxc.nix</a><br>
-  <b>description</b>: Whether to enable marking this volume as available to all nodes.<br>
+  <b>description</b>: Wether to enable marking this volume as available to all nodes<br>
 </li>
 <li>
   <b><u>proxmox.lxc.&lt;name&gt;.mountpoint.&lt;name&gt;.size</u></b><br>
@@ -1081,7 +1135,7 @@ May be also be provied through PM_USER environment variable
 <li>
   <b><u>proxmox.provider.version</u></b><br>
   <b>type</b>: string<br>
-  <b>default</b>: &#34;2.9.11&#34;<br>
+  <b>default</b>: null<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/provider.nix">module/provider.nix</a><br>
   <b>description</b>: Version of the telmate/proxmox provider to use<br>
@@ -1173,7 +1227,9 @@ Note: clone is mutually exclussive with pxe and iso
   <b>default</b>: false<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
-  <b>description</b>: Controls whether to pass discard/trim requests to the underlying storage<br>
+  <b>description</b>: Controls whether to pass discard/trim requests to the underlying storage
+Not supported for `efidisk`
+<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk.*.size</u></b><br>
@@ -1189,7 +1245,9 @@ Note: clone is mutually exclussive with pxe and iso
   <b>default</b>: false<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
-  <b>description</b>: Whether to enable SSD emulation on disk<br>
+  <b>description</b>: Whether to enable SSD emulation on disk
+Not supported for `efidisk`
+<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk.*.storage</u></b><br>
@@ -1201,11 +1259,19 @@ Note: clone is mutually exclussive with pxe and iso
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.disk.*.type</u></b><br>
-  <b>type</b>: one of &#34;ide&#34;, &#34;sata&#34;, &#34;scsi&#34;, &#34;virtio&#34;<br>
+  <b>type</b>: one of &#34;efidisk&#34;, &#34;ide&#34;, &#34;sata&#34;, &#34;scsi&#34;, &#34;virtio&#34;<br>
   <b>default</b>: &#34;virtio&#34;<br>
   <b>example</b>: null<br>
   <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
   <b>description</b>: The type of disk device to add<br>
+</li>
+<li>
+  <b><u>proxmox.qemu.&lt;name&gt;.domain</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: null<br>
+  <b>example</b>: &#34;local&#34;<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: Domain used for generate FQDN for provisioning<br>
 </li>
 <li>
   <b><u>proxmox.qemu.&lt;name&gt;.enable</u></b><br>
@@ -1359,6 +1425,14 @@ Note: pxe is mutually exclussive with clone and iso
 <br>
 </li>
 <li>
+  <b><u>proxmox.qemu.&lt;name&gt;.scsihw</u></b><br>
+  <b>type</b>: string<br>
+  <b>default</b>: &#34;config.proxmox.defaults.qemu.scsihw&#34;<br>
+  <b>example</b>: null<br>
+  <b>defined</b>: <a href="https://github.com/scottbot95/terranix-proxmox/tree/main/modulemodule/qemu.nix">module/qemu.nix</a><br>
+  <b>description</b>: The SCSI controller type to be used<br>
+</li>
+<li>
   <b><u>proxmox.qemu.&lt;name&gt;.sockets</u></b><br>
   <b>type</b>: positive integer, meaning &gt;0<br>
   <b>default</b>: &#34;config.proxmox.defaults.qemu.sockets&#34;<br>
@@ -1409,7 +1483,7 @@ Note: pxe is mutually exclussive with clone and iso
 <br>
 </li>
 <li>
-  <b><u>proxmox.show_deploy_ouptut</u></b><br>
+  <b><u>proxmox.show_deploy_output</u></b><br>
   <b>type</b>: boolean<br>
   <b>default</b>: false<br>
   <b>example</b>: true<br>
