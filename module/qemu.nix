@@ -220,6 +220,13 @@ let
             Use null to skip attempting to deploy NixOS configuration changes.
           '';
         };
+        deployment_user = mkOption {
+          type = types.str;
+          inherit (defaultAndText "deployment_user" "root") default defaultText;
+          description = mdDoc ''
+            SSH user used to connect to the target host
+          '';
+        };
       };
     };
   qemuOptions = { name, ... }: {
@@ -319,6 +326,7 @@ in
             "enable"
             "flake"
             "domain"
+            "deployment_user"
           ]) // {
             sshkeys = "\${tls_private_key.${name}_ssh_key.public_key_openssh}";
             qemu_os = "l26";
@@ -338,7 +346,7 @@ in
           # Access through timer to allow for cloud-init to provision ssh
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
           target_host = "\${time_sleep.${name}_cloud_init_delay.triggers[\"${name}\"]}";
-          target_user = "root";
+          target_user = vm_config.deployment_user;
           ssh_private_key =
             let
               priv_key = "tls_private_key.${name}_ssh_key.private_key_openssh";
