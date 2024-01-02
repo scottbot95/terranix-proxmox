@@ -274,6 +274,17 @@ let
         default = null;
         description = "Disks to attach to this VM";
       };
+      
+      args = mkOption {
+        type = types.str;
+        inherit (defaultAndText "args" "-smbios type=1,serial=ds=nocloud;h=${name}") default defaultText;
+        description = mdDoc ''
+          Arbitrary arguments passed to kvm.
+
+          Default sets SMBIOS serial to configure cloud-init to set
+          the hostname prior to networking being activated (thus ensuring DHCP uses the correct hostname)
+        '';
+      };
     };
   };
 in
@@ -299,19 +310,6 @@ in
     mkIf (cfg.qemu != { }) {
       proxmox.enable = true;
 
-      resource.time_sleep = forEachQemu (name: vm_config: {
-        name = "${name}_cloud_init_delay";
-        value = mkIf vm_config.enable {
-          # Seems to take about 2 minutes in my experience. Use 90s in case it's quicker sometimes
-          # TODO can/should we just increase the timeout used by deploy_nixos step?
-          create_duration = mkDefault "90s";
-          triggers = {
-            # Use a Terraform reference here instead of a Nix module reference to dependency gets established
-            "${name}" = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
-          };
-        };
-      });
-
       resource.tls_private_key = forEachQemu (name: vm_config: {
         name = "${name}_ssh_key";
         value = mkIf vm_config.enable {
@@ -330,6 +328,7 @@ in
           ]) // {
             sshkeys = "\${tls_private_key.${name}_ssh_key.public_key_openssh}";
             qemu_os = "l26";
+            args = "-smbios type=1,serial=ds=nocloud;h=${name}";
           };
         in
         {
@@ -343,9 +342,8 @@ in
           source = terraform-nixos;
           flake = vm_config.flake;
           flake_host = name;
-          # Access through timer to allow for cloud-init to provision ssh
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
-          target_host = "\${time_sleep.${name}_cloud_init_delay.triggers[\"${name}\"]}";
+          target_host = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
           target_user = vm_config.deployment_user;
           ssh_private_key =
             let
