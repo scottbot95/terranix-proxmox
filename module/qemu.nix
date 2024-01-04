@@ -277,7 +277,8 @@ let
       
       args = mkOption {
         type = types.str;
-        inherit (defaultAndText "args" "-smbios type=1,serial=ds=nocloud;h=${name}") default defaultText;
+        default = "-smbios type=1,serial=ds=nocloud;h=${name}";
+        defaultText = literalExpression "-smbios type=1,serial=ds=nocloud;h=\${name}";
         description = mdDoc ''
           Arbitrary arguments passed to kvm.
 
@@ -328,7 +329,6 @@ in
           ]) // {
             sshkeys = "\${tls_private_key.${name}_ssh_key.public_key_openssh}";
             qemu_os = "l26";
-            args = "-smbios type=1,serial=ds=nocloud;h=${name}";
           };
         in
         {
