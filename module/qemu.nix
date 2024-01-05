@@ -227,6 +227,25 @@ let
             SSH user used to connect to the target host
           '';
         };
+        keys = mkOption {
+          type = with types; attrsOf str;
+          inherit (defaultAndText "keys" {}) default defaultText;
+          description = mdDoc ''
+            A map of filename to content to upload as secrets in /var/keys
+          '';
+        };
+        delete_older_than = mkOption {
+          type = types.str;
+          inherit (defaultAndText "delete_older_than" "+5") default defaultText;
+          description = mdDoc ''
+            Can be a list of generation numbers, the special value old to delete all non-current generations,
+            a value such as 30d to delete all generations older than the specified number of days
+            (except for the generation that was active at that point in time),
+            or a value such as +5 to keep the last 5 generations ignoring any newer than current,
+            
+            e.g., if 30 is the current generation +5 will delete generation 25 and all older generations.
+          '';
+        };
       };
     };
   qemuOptions = { name, ... }: {
@@ -326,6 +345,8 @@ in
             "flake"
             "domain"
             "deployment_user"
+            "keys"
+            "delete_older_than"
           ]) // {
             sshkeys = "\${tls_private_key.${name}_ssh_key.public_key_openssh}";
             qemu_os = "l26";
@@ -340,7 +361,7 @@ in
         name = "${name}_deploy_nixos";
         value = mkIf (vm_config.enable && vm_config.flake != null) {
           source = terraform-nixos;
-          flake = vm_config.flake;
+          inherit (vm_config) flake keys delete_older_than;
           flake_host = name;
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
           target_host = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
