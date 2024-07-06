@@ -360,9 +360,12 @@ in
       module = forEachQemu (name: vm_config: {
         name = "${name}_deploy_nixos";
         value = mkIf (vm_config.enable && vm_config.flake != null) {
-          source = terraform-nixos;
-          inherit (vm_config) flake keys delete_older_than;
-          flake_host = name;
+          source = "${terraform-nixos}/deploy_nixos";
+          inherit (vm_config) keys delete_older_than;
+          flake = true;
+
+          config_pwd = vm_config.flake;
+          config = name;
           # TODO potentially could provision through the QEMU agent somehow... Would be *very* custom
           target_host = "\${proxmox_vm_qemu.${name}.name}.${vm_config.domain}";
           target_user = vm_config.deployment_user;
