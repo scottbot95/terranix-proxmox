@@ -393,18 +393,6 @@ in {
   config = 
     let
       forEachLxc = func: mapAttrs' (_: func) cfg.lxc;
-      lxcConfigs = mapAttrsToList 
-        (name: lxcConfig: 
-          let
-            mountpoint = builtins.attrValues lxcConfig.mountpoint;
-            network = builtins.attrValues lxcConfig.network;
-            lxcResource = builtins.removeAttrs ["mountpoint" "network"] lxcConfig;
-          in {
-            resource.proxmox_lxc.${name} = {
-              inherit mountpoint network;
-            } // lxcResource;
-          })
-        cfg.lxc;
     in
     mkIf (cfg.lxc != {}) {
       proxmox.enable = true;
