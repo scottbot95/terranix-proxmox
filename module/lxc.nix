@@ -426,10 +426,9 @@ in {
       module = forEachLxc (lxcConfig: {
         name = "${lxcConfig.name}_deploy_nixos";
         value = mkIf (lxcConfig.enable && lxcConfig.flake != null) {
-          source = "${terraform-nixos}/deploy_nixos";
-          flake = true;
-          config_pwd = lxcConfig.flake;
-          config = lxcConfig.hostname; 
+          source = terraform-nixos;
+          flake = lxcConfig.flake;
+          flake_host = lxcConfig.hostname; 
           target_host = "${lxcConfig.hostname}.${lxcConfig.domain}";
           target_user = "root";
           ssh_private_key = 

@@ -6,7 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     terranix.url = "github:terranix/terranix/develop";
     
-    terraform-nixos.url = "github:nix-community/terraform-nixos";
+    terraform-nixos.url = "github:numtide/terraform-deploy-nixos-flakes";
     terraform-nixos.flake = false;
   };
 
