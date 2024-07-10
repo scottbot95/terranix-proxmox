@@ -68,7 +68,11 @@ let
           Not supported for `efidisk`
         '';
       };
-
+      iothread = mkProxBoolOption {
+        description = ''
+          Controls whether to create one I/O thread per storage controller. 
+        '';
+      };
     };
   };
   # Adapted from https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/security/acme/default.nix
