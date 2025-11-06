@@ -4,7 +4,7 @@ let
   cfg = config.proxmox;
   mkProxBoolOption = { description, ... }@args: mkOption ({
     type = with types; nullOr bool;
-    apply = b: if b then 1 else 0;
+    # apply = b: if b then 1 else 0;
     default = false;
   } // args);
   networkOptions = { ... }: {
@@ -38,6 +38,7 @@ let
     };
   };
   diskOptions = { ... }: {
+    freeformType = with lib.types; attrsOf anything;
     options = {
       type = mkOption {
         type = types.enum [ "efidisk" "ide" "sata" "scsi" "virtio" ];
@@ -53,7 +54,7 @@ let
         type = types.strMatching "[0-9]+[GMK]";
         description = "The size of the created disk";
       };
-      ssd = mkProxBoolOption {
+      emulatessd = mkProxBoolOption {
         description = ''
           Whether to enable SSD emulation on disk
           Not supported for `efidisk`
@@ -62,7 +63,7 @@ let
       discard = mkOption {
         type = with types; nullOr bool;
         default = false;
-        apply = b: if b == null then null else if b then "on" else "ignore";
+        # apply = b: if b == null then null else if b then "on" else "ignore";
         description = ''
           Controls whether to pass discard/trim requests to the underlying storage
           Not supported for `efidisk`
@@ -253,6 +254,7 @@ let
       };
     };
   qemuOptions = { name, ... }: {
+    freeformType = with lib.types; attrsOf anything;
     options = {
       enable = mkEnableOption "deploying this VM";
       name = mkOption {
@@ -293,7 +295,8 @@ let
       };
 
       disk = mkOption {
-        type = with types; nullOr (listOf (submodule diskOptions));
+        # type = with types; nullOr (submodule diskOptions);
+        type = types.anything;
         default = null;
         description = "Disks to attach to this VM";
       };
