@@ -314,7 +314,8 @@ let
         '';
       };
       size = mkOption {
-        type = types.str;
+        type = types.nullOr types.str;
+        default = null;
         description = ''
           Size of the underlying volume.
           Must end in G, M, or K (e.g. "1G", "1024M" , "1048576K").
